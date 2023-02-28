@@ -1,0 +1,3 @@
+rootProject.name = "LoadingLayout"
+include ':app'
+include ':library'

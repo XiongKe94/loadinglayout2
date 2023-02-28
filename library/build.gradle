@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
+apply from: "${rootProject.projectDir}/scripts/upload_maven.gradle"
+
+def buildConfig = rootProject.ext.buildConfig
+android {
+    compileSdkVersion buildConfig.compileSdkVersion as int
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdkVersion as int
+        targetSdkVersion buildConfig.targetSdkVersion as int
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+    api "androidx.core:core-ktx:$buildConfig.kotlin_ktx_core"
+    api "androidx.appcompat:appcompat:$buildConfig.androidx_appcompat"
+    api "com.google.android.material:material:$buildConfig.google_material"
+}
